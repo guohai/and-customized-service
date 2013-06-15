@@ -1,0 +1,36 @@
+this is just a sample for learning service manager on Android platform,
+you can copy/distribute/use it at anywhere, BUT at your own RISK!
+
+source code is based on Android Jelly Bean 4.1
+
+1. how to run it?
+put "customized_service" folder with all the things in it under your AOSP source tree
+eg. just here /path/to/asop/frameworks/base/
+
+add following snippet to /path/to/asop/system/core/rootdir/init.rc 
+service customized /system/bin/customizedserver
+    class main
+    user media
+    group audio camera
+
+add privilege for your service
+{ AID_MEDIA, "test.customized" },
+just add this item to allowed list in
+/path/to/asop/frameworks/base/cmds/servicemanager/service_manager.c
+
+
+then the user 'media' has previlege to start a service 'test.customized' when system started.
+also you can use 'root' or 'system' user for your service, that fine, and in that way you do
+not need to add privilege for your service.
+
+for what is AID_MEDIA, you can check this file(private/android_filesystem_config.h) for detail.
+
+
+build your ROM and flash it into your device or just launch with emulator.
+
+use 'ps' and 'service list' to check the process and service is okay or not.
+if it is okay, go on.
+
+build apk from 'and-customized-service-client', and install it.
+
+just try it, enjoy your customized service.
