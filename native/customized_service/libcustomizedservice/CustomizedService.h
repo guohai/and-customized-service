@@ -20,6 +20,8 @@ class CustomizedService : public BBinder
 
         virtual status_t onTransact(uint32_t, const Parcel&, Parcel*, uint32_t);
 
+        private:
+        void testGetServiceInSameProcess();
 };
 
 }; //namespace
